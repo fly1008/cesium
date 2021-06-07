@@ -1112,7 +1112,7 @@ function getEvaluateTernaryFunction(call) {
 function getFeatureProperty(feature, name) {
   // Returns undefined if the feature is not defined or the property name is not defined for that feature
   if (defined(feature)) {
-    return feature.getProperty(name);
+    return feature.getPropertyInherited(name);
   }
 }
 
@@ -2060,8 +2060,6 @@ Node.prototype.getShaderExpression = function (
         throw new RuntimeError(
           'Error generating style shader: "' + value + '" is not supported.'
         );
-      } else if (defined(unaryFunctions[value])) {
-        return value + "(" + left + ")";
       }
       return value + left;
     case ExpressionNodeType.BINARY:

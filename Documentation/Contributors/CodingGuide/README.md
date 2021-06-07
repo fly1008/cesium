@@ -182,6 +182,7 @@ Cartesian3.fromDegrees = function (
 
 ```javascript
 "use strict";
+
 ```
 
 - :speedboat: To avoid type coercion (implicit type conversion), test for equality with `===` and `!==`, e.g.,
@@ -614,7 +615,7 @@ var p = new Cartesian3(1.0, 2.0, 3.0);
 p.x = "Cesium"; // Changes x to a string, slows down property access
 ```
 
-- In a constructor function, consider properties as write once; do not write to them or read them multiple times. Create a local variable if they need to be ready. For example:
+- In a constructor function, consider properties as write once; do not write to them or read them multiple times. Create a local variable if they need to be read. For example:
 
   Instead of
 
@@ -999,7 +1000,7 @@ varying vec3 v_positionEC;
 v_positionEC = (czm_modelViewRelativeToEye * p).xyz;
 ```
 
-- When [GPU RTE](http://blogs.agi.com/insight3d/index.php/2008/09/03/precisions-precisions/) is used, `High` and `Low` suffixes define the high and low bits, respectively, e.g.,
+- When [GPU RTE](https://help.agi.com/AGIComponents/html/BlogPrecisionsPrecisions.htm) is used, `High` and `Low` suffixes define the high and low bits, respectively, e.g.,
 
 ```glsl
 attribute vec3 position3DHigh;

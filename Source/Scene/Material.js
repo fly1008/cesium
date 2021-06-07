@@ -19,6 +19,7 @@ import AspectRampMaterial from "../Shaders/Materials/AspectRampMaterial.js";
 import BumpMapMaterial from "../Shaders/Materials/BumpMapMaterial.js";
 import CheckerboardMaterial from "../Shaders/Materials/CheckerboardMaterial.js";
 import DotMaterial from "../Shaders/Materials/DotMaterial.js";
+import ElevationBandMaterial from "../Shaders/Materials/ElevationBandMaterial.js";
 import ElevationContourMaterial from "../Shaders/Materials/ElevationContourMaterial.js";
 import ElevationRampMaterial from "../Shaders/Materials/ElevationRampMaterial.js";
 import FadeMaterial from "../Shaders/Materials/FadeMaterial.js";
@@ -153,7 +154,6 @@ import when from "../ThirdParty/when.js";
  *      <li><code>specularMap</code>:  Single channel texture used to indicate areas of water.</li>
  *      <li><code>normalMap</code>:  Normal map for water normal perturbation.</li>
  *      <li><code>frequency</code>:  Number that controls the number of waves.</li>
- *      <li><code>normalMap</code>:  Normal map for water normal perturbation.</li>
  *      <li><code>animationSpeed</code>:  Number that controls the animations speed of the water.</li>
  *      <li><code>amplitude</code>:  Number that controls the amplitude of water waves.</li>
  *      <li><code>specularIntensity</code>:  Number that controls the intensity of specular reflections.</li>
@@ -216,6 +216,11 @@ import when from "../ThirdParty/when.js";
  *  <ul>
  *      <li><code>image</code>: color ramp image to use for color the terrain by aspect.</li>
  *  </ul>
+ *  <li>ElevationBand</li>
+ *  <ul>
+ *      <li><code>heights</code>: image of heights sorted from lowest to highest.</li>
+ *      <li><code>colors</code>: image of colors at the corresponding heights.</li>
+ * </ul>
  * </ul>
  * </ul>
  * </div>
@@ -1691,4 +1696,23 @@ Material._materialCache.addMaterial(Material.AspectRampMaterialType, {
   },
   translucent: false,
 });
+
+/**
+ * Gets the name of the elevation band material.
+ * @type {String}
+ * @readonly
+ */
+Material.ElevationBandType = "ElevationBand";
+Material._materialCache.addMaterial(Material.ElevationBandType, {
+  fabric: {
+    type: Material.ElevationBandType,
+    uniforms: {
+      heights: Material.DefaultImageId,
+      colors: Material.DefaultImageId,
+    },
+    source: ElevationBandMaterial,
+  },
+  translucent: true,
+});
+
 export default Material;
